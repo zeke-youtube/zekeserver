@@ -20,7 +20,7 @@ class MyClient(discord.Client):
 
 client = MyClient()
 
-# /mod
+# /mod command
 @client.tree.command(name="mod", description="Moderate: warn, ban, kick, unban, or clear messages.")
 @app_commands.describe(
     action="Choose 'warn', 'ban', 'kick', 'unban', or 'clear'",
@@ -93,7 +93,7 @@ async def mod_command(interaction: discord.Interaction, action: str, user: disco
     except Exception as e:
         await interaction.response.send_message(f"🚨 Error: `{e}`", ephemeral=True)
 
-# /memes
+# /memes command
 @client.tree.command(name="memes", description="Fetch a random meme from Reddit")
 async def memes_command(interaction: discord.Interaction):
     await interaction.response.defer(ephemeral=True)
@@ -109,7 +109,7 @@ async def memes_command(interaction: discord.Interaction):
             else:
                 await interaction.followup.send("😢 Couldn't fetch meme.", ephemeral=True)
 
-# /help
+# /help command
 @client.tree.command(name="help", description="List available commands.")
 async def help_command(interaction: discord.Interaction):
     embed = discord.Embed(
@@ -119,12 +119,11 @@ async def help_command(interaction: discord.Interaction):
     )
     embed.add_field(name="/mod", value="Moderate users: warn, ban, kick, unban, clear", inline=False)
     embed.add_field(name="/memes", value="Grab a meme from Reddit", inline=False)
-    embed.add_field(name="/weather", value="Check the weather in Dajia, Taichung", inline=False)
     embed.add_field(name="/source", value="View the source code", inline=False)
     embed.add_field(name="/help", value="Show this help menu", inline=False)
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
-# /source
+# /source command (updated GitHub link)
 @client.tree.command(name="source", description="Get the bot's source code link.")
 async def source_command(interaction: discord.Interaction):
     embed = discord.Embed(
@@ -132,14 +131,14 @@ async def source_command(interaction: discord.Interaction):
         description="Here's where to find the project files:",
         color=discord.Color.green()
     )
-    embed.add_field(name="📦 GitHub", value="[View Source Code](https://github.com/your-username/zekebot)", inline=False)
+    embed.add_field(name="📦 GitHub", value="[View Source Code](https://github.com/zeke-youtube/zekeserver/blob/main/zekebot/bot.py)", inline=False)
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
 # Token loader for Windows
 with open("C:/Users/Zeke Cheng/OneDrive/Desktop/token.txt", "r") as file:
     token = file.read().strip()
 
-# Run bot
+# Launch the bot
 async def main():
     async with client:
         await client.start(token)
