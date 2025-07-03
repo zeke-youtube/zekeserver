@@ -135,7 +135,7 @@ async def source_command(interaction: discord.Interaction):
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
 # Token loader for Windows
-with open("C:/Users/Zeke Cheng/OneDrive/Desktop/token.txt", "r") as file:
+with open("nope!!!!!!!!!!!!!!!!!!!!!!", "r") as file:
     token = file.read().strip()
 
 # Launch the bot
